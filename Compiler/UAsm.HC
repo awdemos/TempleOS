@@ -425,13 +425,13 @@ U0 Ui(U8 *buf,U8 **_rip,I64 seg_size=64,I64 *_jmp_dst=NULL,Bool just_ins=FALSE)
     RM2=ModrM>>3 & 7+REX_r;
     if (Mod<3 && RM1&7==4)
       SIB=*rip++;
-    if (Mod==1) {
-      disp=*rip(U8 *)++;
-      CatPrint(reloced_arg1_st,"%02X",disp);
-    } else if (Mod==2) {
-      disp=*rip(U32 *)++;
-      CatPrint(reloced_arg1_st,"%08X",disp);
-    }
+     if (Mod==1) {
+       disp=*(U8*)rip++;
+       CatPrint(reloced_arg1_st,"%02X",disp);
+     } else if (Mod==2) {
+       disp=*(U32*)rip++;
+       CatPrint(reloced_arg1_st,"%08X",disp);
+     }
     if (tmpins->slash_val<8)
       RM2=-1;
     else {
@@ -457,7 +457,7 @@ U0 Ui(U8 *buf,U8 **_rip,I64 seg_size=64,I64 *_jmp_dst=NULL,Bool just_ins=FALSE)
 	CatPrint(reloced_arg2_st,"%Z",RM2,ptr);
     }
     if (RM1&7==5 && !Mod) {
-      disp=*rip(I32 *)++;
+      disp=*(I32*)rip++;
       if (seg_size==64) {
 	disp+=rip;
 	if (reloced_arg2==ARGT_IMM8 || reloced_arg2==ARGT_UIMM8)
@@ -491,7 +491,7 @@ U0 Ui(U8 *buf,U8 **_rip,I64 seg_size=64,I64 *_jmp_dst=NULL,Bool just_ins=FALSE)
 	  else
 	    ptr="ST_U32_REGS";
 	  if (r1==REG_RBP && !Mod) {
-	    disp=*rip(U32 *)++;
+	    disp=*(U32*)rip++;
 	    CatPrint(reloced_arg1_st,"%08X[%Z*%d]",disp,r2,ptr,scale);
 	  } else if (r2==4)
 	    CatPrint(reloced_arg1_st,"[%Z]",r1,ptr);
@@ -547,10 +547,10 @@ U0 Ui(U8 *buf,U8 **_rip,I64 seg_size=64,I64 *_jmp_dst=NULL,Bool just_ins=FALSE)
       break;
     start:
       case ARGT_REL8:
-	disp=*rip(I8 *)++;
+	disp=*(I8*)rip++;
 	break;
       case ARGT_REL16:
-	disp=*rip(I16 *)++;
+	disp=*(I16*)rip++;
 	break;
       case ARGT_REL32:
 	disp=*rip(I32 *)++;
@@ -567,12 +567,12 @@ U0 Ui(U8 *buf,U8 **_rip,I64 seg_size=64,I64 *_jmp_dst=NULL,Bool just_ins=FALSE)
       break;
     case ARGT_MOFFS8...ARGT_MOFFS64:
       CatPrint(arg1_st,seg_overrides);
-      if (arg1_size==8)
-	disp=*rip(U8 *)++;
-      else if (opadd==16)
-	disp=*rip(U16 *)++;
-      else
-	disp=*rip(U32 *)++;
+       if (arg1_size==8)
+ 	disp=*(U8*)rip++;
+       else if (opadd==16)
+ 	disp=*(U16*)rip++;
+       else
+ 	disp=*(U32*)rip++;
       CatPrint(arg1_st,"[%X]",disp);
       break;
     case ARGT_AL ... ARGT_DX:
@@ -607,7 +607,7 @@ U0 Ui(U8 *buf,U8 **_rip,I64 seg_size=64,I64 *_jmp_dst=NULL,Bool just_ins=FALSE)
     case ARGT_MOFFS8...ARGT_MOFFS64:
       CatPrint(arg2_st,seg_overrides);
       if (arg2_size==8)
-	disp=*rip(U8 *)++;
+	disp=*(U8*)rip++;
       else if (opadd==16)
 	disp=*rip(U16 *)++;
       else

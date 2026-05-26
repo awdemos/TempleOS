@@ -268,7 +268,7 @@ U0 LexSkipEol(CCmpCtrl *cc)
   while (Bt(char_bmp_non_eol,ch));
 }
 
-U8 *LexFirstRem(CCmpCtrl *cc,U8 *marker,I64 _len=NULL)
+U8 *LexFirstRem(CCmpCtrl *cc,U8 *marker,I64 *_len=NULL)
 {//$LK,"LexGetChar",A="MN:LexGetChar"$() chars making str until marker.
   U8 *res,*ptr;
   CQueVectU8 *tmpv=QueVectU8New;

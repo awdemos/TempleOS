@@ -1,0 +1,10 @@
+test_qsort
+test_qsort2
+test_qsort3
+test_qsort4
+test_qsort5
+test_qsort6
+test_qsort7
+test_qsort8
+test_qsort_full
+*.o

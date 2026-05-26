@@ -1,0 +1,8 @@
+*.o
+*.a
+*.so
+*.out
+gcc_errors.txt
+holyc_compiler
+test_main
+QSort.o

@@ -68,7 +68,7 @@ U0 AsmHashLoad()
   size_max=offset(CHashOpcode.ins)+sizeof(CInst)<<5;
   tmpo_max=MAlloc(size_max);
 
-  cc=CmpCtrlNew(FileRead("OpCodes.DD"),,"OpCodes.DD.Z");
+   cc=CmpCtrlNew(FileRead("OpCodes.DD", NULL), 0, "OpCodes.DD.Z");
   cc->htc.hash_table_lst=NULL;
   Lex(cc);
   while (cc->token) {
