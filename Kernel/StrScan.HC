@@ -73,12 +73,12 @@ to avoid this.
     ch=*src++;
   }
   if (!StrNCmp(src-1,"inf",3)) {
-    d=ì;
+    d=ï¿½;
     src+=3;
     goto a2f_end;
   }
-  if (*src=='ì') {
-    d=ì;
+  if (*src=='ï¿½') {
+    d=ï¿½;
     src++;
     goto a2f_end;
   }
@@ -142,7 +142,7 @@ SM() start of mon
 EM() end of mon
 SY() start of year
 EY() end of year
-Full expressions are not implimented
+Full expressions are not implemented
 but you can do stuff like SM(*-7)+3
 and it will return the 3rd day after
 the start of mon for seven days before
